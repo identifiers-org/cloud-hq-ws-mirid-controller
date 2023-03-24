@@ -1,6 +1,6 @@
 # This Dockerfile defines how to containerize this service.
-FROM identifiersorg/linux-java8
-LABEL maintainer="Manuel Bernal Llinares <mbdebian@gmail.com>"
+FROM identifiersorg/linux-java8:1.2.0
+LABEL maintainer="Renato Caminha Juaçaba Neto <rjuacaba@gmail.com>"
 
 # Environment - defaults
 ENV HQ_WS_MIRID_CONTROLLER_JVM_MEMORY_MAX 768m
