@@ -25,13 +25,14 @@ import org.springframework.retry.annotation.EnableRetry;
 public class CommonConfiguration {
     // TODO
     // Redis configuration
-    @Value("${spring.redis.host}")
-    private String redisHost;
-    @Value("${spring.redis.port}")
-    private int redisPort;
 
     @Bean
-    public RedissonClient redissonClient() {
+    public RedissonClient redissonClient(
+            @Value("${spring.redis.host}")
+            String redisHost,
+            @Value("${spring.redis.port}")
+            int redisPort
+    ) {
         Config config = new Config();
         config.useSingleServer().setAddress(String.format("redis://%s:%d", redisHost, redisPort));
         return Redisson.create(config);
