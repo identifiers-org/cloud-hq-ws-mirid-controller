@@ -22,10 +22,7 @@ import org.springframework.retry.annotation.EnableRetry;
 @Configuration
 @EnableJpaAuditing
 @EnableRetry
-public class CommonConfiguration {
-    // TODO
-    // Redis configuration
-
+public class RedisConfiguration {
     @Bean
     public RedissonClient redissonClient(
             @Value("${spring.redis.host}")

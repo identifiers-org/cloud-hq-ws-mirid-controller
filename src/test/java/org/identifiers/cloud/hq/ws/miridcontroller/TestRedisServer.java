@@ -1,6 +1,6 @@
 package org.identifiers.cloud.hq.ws.miridcontroller;
 
-import org.identifiers.cloud.hq.ws.miridcontroller.configuration.CommonConfiguration;
+import org.identifiers.cloud.hq.ws.miridcontroller.configuration.RedisConfiguration;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -16,18 +16,13 @@ import jakarta.annotation.PreDestroy;
 public class TestRedisServer {
     static GenericContainer<?> redis;
 
-//    static {
-//        System.setProperty("spring.redis.host", redis.getHost());
-//        System.setProperty("spring.redis.port", redis.getMappedPort(6379).toString());
-//    }
-
     @Autowired
-    CommonConfiguration commonConfiguration;
+    RedisConfiguration commonConfiguration;
 
     @Bean
     @Primary
     public RedissonClient testRedissonClient() {
-        DockerImageName img = DockerImageName.parse("redis");
+        DockerImageName img = DockerImageName.parse("redis:7.2-alpine");
         redis = new GenericContainer<>(img)
                 .withExposedPorts(6379)
                 .withReuse(true);
